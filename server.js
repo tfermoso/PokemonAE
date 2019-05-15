@@ -19,7 +19,7 @@ app.post('/login',(req,res)=>{
     let name=req.body.name;
     let pass=req.body.password;
 
-    if(name=="Tomas" && pass=="12345"){
+    if(name=="Juan" && pass=="12345"){
         usuarioOnline.push(name);
         res.send({
             "result":"ok",
