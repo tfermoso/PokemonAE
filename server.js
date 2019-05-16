@@ -14,10 +14,27 @@ app.post('/',(req,res)=>{
     res.send(`Hola mundo desde post ${nombre}`);
 })
 
-app.post('/login',(req,res)=>{
+app.post('/login', (req,res)=>{
     console.log(req.body)
     let name=req.body.name;
     let pass=req.body.password;
+
+    if(name=="Mario" && pass=="1234"){
+        usuarioOnline.push(name);
+        res.send({
+            "result":"ok",
+            "usuarios":usuarioOnline
+    })
+    }else{
+        res.send({"result":"usuario o contraseña incorrecto"})
+    }
+})
+
+app.post('/register', (req,res)=>{
+    console.log(req.body)
+    let name = req.body.name;
+    let email = req.body.email;
+    let pass = req.body.password;
 
     if(name=="Mario" && pass=="1234"){
         usuarioOnline.push(name);
