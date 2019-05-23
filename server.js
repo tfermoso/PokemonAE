@@ -1,6 +1,15 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var usuariosOnline = [];
+var usuariosOnline = [
+    {
+        nick: "Prueba",
+        id: 1
+    },
+    {
+        nick: "Prueba2",
+        id: 2
+    }
+];
 var mysql = require('mysql2');
 
 
@@ -55,7 +64,8 @@ app.post('/login', (req, res) => {
 });
 
 
-//?id=1
+//localhost:4000/?id=1
+
 app.get('/', (req, res) => {
     let id = req.query.id;
     console.log(id);
@@ -63,14 +73,20 @@ app.get('/', (req, res) => {
         `SELECT * FROM JUGADOR where id_jugador=${id}`,
         function (err, results) {
             console.log(results);
+            let Onlineusuarios = [];
+            for (let usuario of usuariosOnline) {
+                if (usuario.id != id) {
+                    Onlineusuarios.push(usuario)
+                }
+            }
             let data = {
-                "result": results
+                "result": results,
+                "usuarios": Onlineusuarios
             }
             res.send(data);
         }
     );
 });
-
 
 
 let puerto = 4000;
