@@ -31,21 +31,26 @@ app.post('/login', (req,res)=>{
 })
 
 app.post('/register', (req,res)=>{
-    console.log(req.body)
-    let name = req.body.name;
+    let nick = req.body.name;
     let email = req.body.email;
     let pass = req.body.password;
-
-    if(name=="Mario" && pass=="1234"){
-        usuarioOnline.push(name);
-        res.send({
-            "result":"ok",
-            "usuarios":usuarioOnline
-    })
-    }else{
-        res.send({"result":"usuario o contraseña incorrecto"})
-    }
-})
+    let numero_partidas_ganadas = 0;
+    if (username && password) {
+		connection.query('insert into Jugador values (?, ?, ?, ?)' [numero_partidas_ganadas, nick, pass, email], function(error, results, fields) {
+			if (results.length > 0) {
+				request.session.loggedin = true;
+				request.session.username = username;
+				response.redirect('/home');
+			} else {
+				response.send('Incorrect Username and/or Password!');
+			}			
+			response.end();
+		});
+	} else {
+		response.send('Please enter Username and Password!');
+		response.end();
+	}
+});
 
 app.use(express.static('www'));
 
