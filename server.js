@@ -66,13 +66,22 @@ app.post('/login', (req, res) => {
 //?id=1
 app.get('/', (req, res) => {
     let id = req.query.id;
+    let onlineuser = [];
     console.log(id);
     con.query(
         `SELECT * FROM JUGADOR where id_jugador=${id}`,
         function (err, results) {
             console.log(results);
+
+            for ( let usuario of usuariosOnline){
+                if (ususario.id != id) {
+                    onlineuser.push(usuario);
+                }
+            }
+
             let data = {
-                "result": results
+                "result": results,
+                "usuarios": onlineuser
             }
             res.send(data);
         }
