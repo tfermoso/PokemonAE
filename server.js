@@ -52,6 +52,13 @@ app.post('/register', (req,res)=>{
 	}
 });
 
+
+app.get('/inicio', (req, res) => {
+    let id = req.get(name)
+    res.send('inicio.html');
+    getElementbyId('nombre').value = id;
+});
+
 app.use(express.static('www'));
 
 let puerto=4000;
