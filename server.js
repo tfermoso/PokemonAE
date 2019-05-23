@@ -1,6 +1,12 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var usuariosOnline = [];
+var usuariosOnline = [{
+    usuario: "Prueba2"
+},
+{
+    usuario: "Prueba3"
+}
+];
 var mysql = require('mysql2');
 
 
