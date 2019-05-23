@@ -48,21 +48,6 @@ app.post('/', (req, res) => {
     res.send(`Hola mundo desde post ${nombre}`);
 })
 
-app.post('/login', (req, res) => {
-    let name = req.body.name
-    let password = req.body.password
-    if (name == "Andrea" && password == "12345") {
-        usuariosOnline.push(name);
-        res.send({
-            "result": "ok",
-            "usuarios": usuariosOnline
-        });
-    } else {
-        res.send({ "result": "usuario o contraseña incorrecto" });
-    }
-});
-
-
 //?id=1
 app.get('/', (req, res) => {
     let id = req.query.id;
