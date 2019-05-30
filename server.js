@@ -1,3 +1,4 @@
+
 var express = require('express');
 var bodyParser = require('body-parser');
 var usuariosOnline = [
@@ -35,7 +36,19 @@ con.connect(function (err) {
     console.log("Connected!");
 });
 
+let datos={ "nombre": "Juan" }
 
+
+
+app.post('/datos', (req, res) => {
+    res.send(datos);
+});
+
+app.post('/cambiardatos', (req, res) => {
+    let nuevonombre=req.body.nombre
+    datos.nombre=nuevonombre
+    res.send(datos);
+});
 //localhost:4000/?id=1
 
 app.get('/', (req, res) => {
@@ -59,7 +72,6 @@ app.get('/', (req, res) => {
         }
     );
 });
-
 
 
 let puerto = 4000;
