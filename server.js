@@ -30,6 +30,7 @@ app.post('/login',(req,res)=>{
     }
 })
 
+
 app.use(express.static('www'));
 
 let puerto=4000;
