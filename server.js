@@ -23,25 +23,20 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 
 
-// var con = mysql.createConnection({
-//     host: "localhost",
-//     user: "pokemon",
-//     password: "Aula@2019",
-//     database: "pokestudio",
-//     port: 3306
+var con = mysql.createConnection({
+    host: "192.168.1.30",
+    user: "pokemon",
+    password: "Aula@2019",
+    database: "pokestudio",
+    port: 3306
 
-// });
+});
 
-// con.connect(function (err) {
-//     if (err) throw err;
-//     console.log("Connected!");
-// });
+con.connect(function (err) {
+    if (err) throw err;
+    console.log("Connected!");
+});
 
-
-
-// app.get('/', (req, res) => {
-//     res.send("Hola mundo");
-// });
 
 app.post('/datos', (req, res) => {
     res.send(datos);
@@ -84,13 +79,19 @@ app.get('/', (req, res) => {
 });
 
 var mapa = [
-    ["", "", "", "", "", ""]
-    ["", "", "", "", "", ""]
-    ["", "", "", "", "", ""]
-    ["", "", "", "", "", ""]
-    ["", "", "", "", "", ""]
-    ["", "", "", "", "", ""]
-]
+    ["null", "null", "null", "null", "null", "null"],
+    ["null", "null", "null", "null", "null", "null"],
+    ["null", "null", "null", "null", "null", "null"],
+    ["null", "null", "null", "null", "null", "null"],
+    ["null", "null", "null", "null", "null", "null"],
+    ["null", "null", "null", "null", "null", "null"]
+];
+
+app.post('/mapa', (req, res) => {
+    let pokemon = con.query(`SELECT nombre from Pokemon_Base order by rand() limit 1;`, null);
+    console.log(pokemon)
+    res.send(pokemon)
+});
 
 let puerto = 4000;
 app.listen(puerto, () => {
