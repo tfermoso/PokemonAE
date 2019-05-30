@@ -23,25 +23,35 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 
 
-var con = mysql.createConnection({
-    host: "localhost",
-    user: "pokemon",
-    password: "Aula@2019",
-    database: "pokestudio",
-    port: 3306
+// var con = mysql.createConnection({
+//     host: "localhost",
+//     user: "pokemon",
+//     password: "Aula@2019",
+//     database: "pokestudio",
+//     port: 3306
 
-});
+// });
 
-con.connect(function (err) {
-    if (err) throw err;
-    console.log("Connected!");
-});
+// con.connect(function (err) {
+//     if (err) throw err;
+//     console.log("Connected!");
+// });
 
 
 
 // app.get('/', (req, res) => {
 //     res.send("Hola mundo");
 // });
+
+app.post('/datos', (req, res) => {
+    res.send(datos);
+});
+
+app.post('/changename', (req, res) => {
+    let nuevonombre = req.body.nombre;
+    datos.nombre = nuevonombre;
+    res.send(datos);
+});
 
 app.post('/', (req, res) => {
     let nombre = req.body.nombre
@@ -73,7 +83,14 @@ app.get('/', (req, res) => {
     );
 });
 
-
+var mapa = [
+    ["", "", "", "", "", ""]
+    ["", "", "", "", "", ""]
+    ["", "", "", "", "", ""]
+    ["", "", "", "", "", ""]
+    ["", "", "", "", "", ""]
+    ["", "", "", "", "", ""]
+]
 
 let puerto = 4000;
 app.listen(puerto, () => {
