@@ -38,11 +38,12 @@ var combates = {
                 nombne: 'Pikachu',
                 salud: 100,
                 rapido: 30,
-                cargado: 80,
+                cargado: 80, 
                 carga: 3,
                 contador_carga: 0
             }
         },
+
         jugador2: {
             id: 23,
             pokemon: {
@@ -57,6 +58,7 @@ var combates = {
         turno: 321
     }
 }
+
 
 app.get('/combate', (req, res) => {
     console.log(req.query);
