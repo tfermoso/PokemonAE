@@ -1,36 +1,31 @@
+require('dotenv').config()
 var express = require('express');
 var bodyParser = require('body-parser');
-var usuarioOnline = []
+const path = require('path');
+const loginRoutes = require('./routes/login');
+const inicioRoutes = require('./routes/inicio');
+const mysql = require('mysql2');
+
+var usuarioOnline = [{"name":"Juan"}]
+
+// create the connection to database
+const connection = mysql.createConnection({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME
+});
+
 
 var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-// get the client
-const mysql = require('mysql2');
 
-// create the connection to database
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'root',
-    database: 'pokestudio'
-});
+
 
 
 app.get('/', (req, res) => {
-    let id=req.query.id;
-    console.log(id);
-    connection.query(
-        `SELECT * FROM jugador where id_jugador=${id}`,
-        function (err, results) {
-            console.log(results); // results contains rows returned by server
-            
-            let data={
-                "result":results                
-            }
-            res.send(data);
-        }
-    );
+    res.sendFile(path.resolve('./www/index.html'));
 
 })
 app.post('/', (req, res) => {
@@ -66,7 +61,10 @@ app.post('/login', (req, res) => {
 
 app.use(express.static('www'));
 
-let puerto = 4000;
-app.listen(puerto, () => {
-    console.log(`Servidor escuchando en el puerto ${puerto}`);
+// login
+app.use('/login2', loginRoutes);
+// Inicio
+app.use('/inicio', inicioRoutes);
+app.listen(process.env.PORT, () => {
+    console.log(`Servidor escuchando en el puerto ${process.env.PORT}`);
 })
