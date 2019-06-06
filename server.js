@@ -1,14 +1,20 @@
+require('dotenv').config()
 var express = require('express');
 var bodyParser = require('body-parser');
-var usuariosOnline = [{
-    nick: "Prueba2",
-    id: 2   
-},
-{
-    nick: "Prueba",
-    id: 1
-}
-];
+const path = require('path');
+const loginRoutes = require('./routes/login');
+const inicioRoutes = require('./routes/inicio');
+const mysql = require('mysql2');
+
+var usuarioOnline = [{"name":"Juan"}]
+
+// create the connection to database
+const con = mysql.createConnection({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME
+});
 var mysql = require('mysql2');
 
 
