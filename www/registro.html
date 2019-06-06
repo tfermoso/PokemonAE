@@ -5,19 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Loguin Usuarios</title>
+    <title>Modificación datos usuario</title>
 </head>
 
 <body>
-        <body background="fondo.png" width="550" > 
-    <form id=login action="/login" method="post">
+    <form id=cambiardatos action="/cambiardatos" method="post">
         <center>
             <br>
-            <h1>Logueo de los usuarios</h1>
+            <h1>Modificación de datos del usuario</h1>
             <input type="text" name="name" id="nombre_usuario" placeholder="Usuario">
             <br><br>
             <input type="password " name="password" id="pass_usuario" placeholder="Contraseña">
             <br><br>
+            <input type="password " name="new_password" id="new_pass_usuario" placeholder="Nueva contraseña">
+            <br><br>  
             <input type="submit" value="Logearse">
         </center>
     </form>

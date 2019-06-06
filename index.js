@@ -6,7 +6,7 @@ const loginRoutes = require('./routes/login');
 const inicioRoutes = require('./routes/inicio');
 const mysql = require('mysql2');
 
-var usuarioOnline = [{"name":"Juan"}]
+var usuarioOnline = [{ "name": "Juan" }]
 
 // create the connection to database
 const connection = mysql.createConnection({
@@ -16,13 +16,9 @@ const connection = mysql.createConnection({
     database: process.env.DB_NAME
 });
 
-
 var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
-
-
 
 app.get('/', (req, res) => {
     res.sendFile(path.resolve('./www/index.html'));
@@ -33,14 +29,20 @@ app.post('/', (req, res) => {
     res.send(`Hola mundo desde post ${nombre}`);
 })
 
-let datos={"nombre":"Juan"};
+let datos = { "nombre": "Juan" };
 app.post('/datos', (req, res) => {
     res.send(datos);
 })
 app.post('/cambiardatos', (req, res) => {
-    let nuevoNombre = req.body.nombre
-    datos.nombre=nuevoNombre
+    let nuevaPass = req.body.pass
+    datos.pass = nuevaPass
     res.send(datos);
+    if (name == name && pass != nuevaPass) {
+        res.send({
+            "result": "ok",
+            "usuarios": usuarioOnline
+        })
+    }
 })
 
 app.post('/login', (req, res) => {

@@ -1,16 +1,10 @@
+var path = require('path');
 
+//PAGINA PARA INTRODUIR USUARIO Y CONTRASEÑA 
 module.exports.login = async function (req, res) {
-    const id = req.params.id;
-    const parametrs = req.query;
-    console.log(req.params);
-    console.log(req);
-   res.send("hola desde login");
+   res.sendFile(path.join(__dirname, '../www','login.html'));
 }
-
+//PAGINA DE MODIFICACION DE LA CONRTRASEÑA DE LOS USUARIOS
 module.exports.registro = async function (req, res) {
-    const id = req.params.id;
-    const parametrs = req.query;
-    console.log(req.params);
-    console.log(req);
-   res.send("hola desde registro");
+    res.sendFile(path.join(__dirname, '../www','registro.html'));
 }

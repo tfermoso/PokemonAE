@@ -2,7 +2,7 @@
   "name": "pokemonae",
   "version": "1.0.0",
   "description": "Juego pokemon AE",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,6 +12,7 @@
     "body-parser": "^1.19.0",
     "dotenv": "^8.0.0",
     "express": "^4.16.4",
-    "mysql2": "^1.6.5"
+    "mysql2": "^1.6.5",
+    "path": "^0.12.7"
   }
 }
