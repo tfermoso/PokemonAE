@@ -1,9 +1,9 @@
 require('dotenv').config()
 var express = require('express');
 var bodyParser = require('body-parser');
-const path = require('path');
-const loginRoutes = require('./routes/login');
-const inicioRoutes = require('./routes/inicio');
+// const path = require('path');
+// const loginRoutes = require('./routes/login');
+// const inicioRoutes = require('./routes/inicio');
 const mysql = require('mysql2');
 
 var app = express();
@@ -78,11 +78,10 @@ let mapa = [
     ["", "", "", "", "", ""],
     ["", "", "", "", "", ""]
 ]
-// order by rand() limit 1
 
 
-app.get('/pokemon', (req, res) => {
-    con.query(`SELECT * from jugador `),
+app.get('/pokemonbase', (req, res) => {
+    con.query(`SELECT nombre from Pokemon_base order by rand() limit 1 `,
         function (err, results) {
             console.log(results);
             let data = {
@@ -90,6 +89,7 @@ app.get('/pokemon', (req, res) => {
             }
             res.send(data);
         }
+    );
 });
 
 
@@ -98,9 +98,9 @@ app.get('/pokemon', (req, res) => {
 
 
 // login
-app.use('/login2', loginRoutes);
+// app.use('/login2', loginRoutes);
 // Inicio
-app.use('/inicio', inicioRoutes);
+// app.use('/inicio', inicioRoutes);
 app.listen(process.env.PORT, () => {
     console.log(`Servidor escuchando en el puerto ${process.env.PORT}`);
 })
