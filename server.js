@@ -5,8 +5,9 @@ const path = require('path');
 const loginRoutes = require('./routes/login');
 const inicioRoutes = require('./routes/inicio');
 const mysql = require('mysql2');
+var fs = require('fs');
 
-var usuarioOnline = [{"name":"Juan"}]
+var usuariosOnline = [{"name":"Juan"}]
 
 // create the connection to database
 const con = mysql.createConnection({
@@ -15,28 +16,16 @@ const con = mysql.createConnection({
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME
 });
-var mysql = require('mysql2');
+
 
 
 var app = express();
-var fs = require('fs');
+
 
 app.use(bodyParser.json());
 
 app.use(express.static('www'));
 app.use(bodyParser.urlencoded({ extended: false }));
-
-
-
-
-var con = mysql.createConnection({
-    host: "192.168.1.30",
-    user: "pokemon",
-    password: "Aula@2019",
-    database: "pokestudio",
-    port: 3306
-
-});
 
 con.connect(function (err) {
     if (err) throw err;
