@@ -70,6 +70,32 @@ app.get('/', (req, res) => {
 });
 
 
+let mapa = [
+    ["", "", "", "", "", ""],
+    ["", "", "", "", "", ""],
+    ["", "", "", "", "", ""],
+    ["", "", "", "", "", ""],
+    ["", "", "", "", "", ""],
+    ["", "", "", "", "", ""]
+]
+// order by rand() limit 1
+
+
+app.get('/pokemon', (req, res) => {
+    con.query(`SELECT * from jugador `),
+        function (err, results) {
+            console.log(results);
+            let data = {
+                "result": results
+            }
+            res.send(data);
+        }
+});
+
+
+
+
+
 
 // login
 app.use('/login2', loginRoutes);
