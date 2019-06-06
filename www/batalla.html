@@ -7,7 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <title>HTML de la batalla</title>
+    <script src="js/index.js"></script>
 </head>
 
 <body>
@@ -22,10 +24,21 @@
                 style="background-image: url(https://i.pinimg.com/originals/99/a1/a4/99a1a40da91a63e147b5cfae8b929e45.jpg); background-size: cover">
                 <h3>Datos de mi pokemon</h3>
                 <h5>Nombre: 'Pikachu'</h5>
-                <h5>Salud: 100</h5>
-                <h5><button>Ataque rápido</button></h5>
-                <h5><button>Ataque cargado</button></h5>
-                <h5>Carga de ataque necesaria: 5</h5>
+                <h5><label for="">Salud:</label><span id = "saludjugador1">100</span></h5>
+                <form action="/ataque" method="GET" id="form1">
+                    <input type="hidden" id="combate" value="combate1">
+                    <input type="hidden" value="321">
+                    <h5><button type="button" class="btnAttack" value="rapido1" id="jugador1">Ataque rápido 1</button>
+                    </h5>
+                    <h5><button type="button" class="btnAttack" value="rapido2" id="jugador1">Ataque rápido 2</button>
+                    </h5>
+                    <h5><button type="button" class="btnAttack" value="cargado1" id="jugador1">Ataque cargado 1</button>
+                    </h5>
+                    <h5><button type="button" class="btnAttack" value="cargado2" id="jugador1">Ataque cargado 2</button>
+                    </h5>
+                </form>
+                <h5>Carga de ataque cargado 1 necesaria: 3</h5>
+                <h5>Carga de ataque cargado 2 necesaria: 5</h5>
                 <h5>Carga de ataque: 3</h5>
             </div>
             <div class="col-sm-6"
@@ -38,14 +51,31 @@
                 style="background-image: url(https://i.pinimg.com/originals/a7/c6/96/a7c696f594c34591087f559773e26ea0.png); background-size: 100% 100%">
                 <h3>Datos de su pokemon</h3>
                 <h5>Nombre: 'Bulbasur'</h5>
-                <h5>Salud: 150</h5>
-                <h5><button>Ataque rápido</button></h5>
-                <h5><button>Ataque cargado</button></h5>
-                <h5>Carga de ataque necesaria: 3</h5>
+                <h5 id="saludjugador2">Salud: 150</h5>
+                <form action="/ataque" method="GET" id="form1">
+                    <input type="hidden" id="combate" value="combate1">
+                    <input type="hidden" value="23">
+                    <h5><button type="button" class="btnAttack" value="rapido1" id="jugador2">Ataque rápido 1</button>
+                    </h5>
+                    <h5><button type="button" class="btnAttack" value="rapido2" id="jugador2">Ataque rápido 2</button>
+                    </h5>
+                    <h5><button type="button" class="btnAttack" value="cargado1" id="jugador2">Ataque cargado 1</button>
+                    </h5>
+                    <h5><button type="button" class="btnAttack" value="cargado2" id="jugador2">Ataque cargado 2</button>
+                    </h5>
+                </form>
+                <h5>Carga de ataque cargado 1 necesaria: 3</h5>
+                <h5>Carga de ataque cargado 2 necesaria: 5</h5>
                 <h5>Carga de ataque: 2</h5>
             </div>
         </div>
     </div>
+
+    <script>
+        let salud1 = document.getElementById("saludjugador1");
+        let salud2 = document.getElementById("saludjugador2");
+
+    </script>
 
 </body>
 

@@ -37,9 +37,12 @@ var combates = {
             pokemon: {
                 nombre: 'Pikachu',
                 salud: 100,
-                rapido: 30,
-                cargado: 80, 
-                carga: 3,
+                rapido1: 30,
+                rapido2: 50,
+                cargado1: 80,
+                cargado2: 90,
+                carga1: 3,
+                carga2: 5,
                 contador_carga: 0
             }
         },
@@ -49,9 +52,11 @@ var combates = {
             pokemon: {
                 nombre: 'Charmander',
                 salud: 90,
-                rapido: 40,
-                cargado: 70,
-                carga: 3,
+                rapido1: 40,
+                rapido2: 70,
+                rapido2: 90,
+                carga1: 3,
+                carga2: 5,
                 contador_carga: 0
             }
         },
@@ -91,11 +96,17 @@ app.get('/ataque', (req, res) => {
                 defensor = "jugador1";
             }
             if (combates[combate].turno == jugador) {
-                if (ataque == "cargado" && combates[combate][atacante].pokemon.contador_carga >= combates[combate][atacante].pokemon.carga) {
-                    combates[combate][defensor].pokemon.salud -= combates[combate][atacante].pokemon.cargado;
-                    combates[combate][atacante].pokemon.contador_carga -= combates[combate][atacante].pokemon.carga;
-                } else if (ataque == "rapido") {
-                    combates[combate][defensor].pokemon.salud -= combates[combate][atacante].pokemon.rapido;
+                if (ataque == "cargado1" && combates[combate][atacante].pokemon.contador_carga >= combates[combate][atacante].pokemon.carga1) {
+                    combates[combate][defensor].pokemon.salud -= combates[combate][atacante].pokemon.cargado1;
+                    combates[combate][atacante].pokemon.contador_carga -= combates[combate][atacante].pokemon.carga1;
+                } else if (ataque == "cargado2" && combates[combate][atacante].pokemon.contador_carga >= combates[combate][atacante].pokemon.carga2) {
+                    combates[combate][defensor].pokemon.salud -= combates[combate][atacante].pokemon.cargado2;
+                    combates[combate][atacante].pokemon.contador_carga -= combates[combate][atacante].pokemon.carga2;
+                } else if (ataque == "rapido1") {
+                    combates[combate][defensor].pokemon.salud -= combates[combate][atacante].pokemon.rapido1;
+                    combates[combate][atacante].pokemon.contador_carga++;
+                } else if (ataque == "rapido2") {
+                    combates[combate][defensor].pokemon.salud -= combates[combate][atacante].pokemon.rapido2;
                     combates[combate][atacante].pokemon.contador_carga++;
                 }
                 if (combates[combate][defensor].pokemon.salud <= 0) {
