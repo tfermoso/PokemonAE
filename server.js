@@ -1,6 +1,13 @@
-
+require('dotenv').config()
 var express = require('express');
 var bodyParser = require('body-parser');
+const path = require('path');
+const loginRoutes = require('./routes/login');
+const inicioRoutes = require('./routes/inicio');
+const mysql = require('mysql2');
+
+var app = express();
+var fs = require('fs');
 
 var usuariosOnline = [
     {
@@ -13,26 +20,19 @@ var usuariosOnline = [
     }
 ];
 
-var mysql = require('mysql2');
-
-
-var app = express();
-var fs = require('fs');
 
 app.use(bodyParser.json());
 
 app.use(express.static('www'));
 app.use(bodyParser.urlencoded({ extended: false }));
 
+let datos={ "nombre": "Juan" }
 const con = mysql.createConnection({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME
 });   
-
-let datos={ "nombre": "Juan" }
-
 
 
 app.post('/datos ' , (req, res) => {
@@ -44,6 +44,7 @@ app.post('/cambiardatos', (req, res) => {
     datos.nombre=nuevonombre
     res.send(datos);
 });
+
 //localhost:4000/?id=1
 
 app.get('/', (req, res) => {
@@ -72,4 +73,4 @@ app.get('/', (req, res) => {
 let puerto = 4000;
 app.listen(puerto, () => {
     console.log(`Servidor escuchando en el puerto ${puerto}`);
-})
+});
