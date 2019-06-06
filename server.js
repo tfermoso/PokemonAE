@@ -47,7 +47,7 @@ app.post('/cambiardatos', (req, res) => {
 
 //localhost:4000/?id=1
 
-app.get('/', (req, res) => {
+app.get('/usuariosonline', (req, res) => {
     let id = req.query.id;
     console.log(id);
     con.query(
@@ -75,16 +75,17 @@ app.get('/', (req, res) => {
 
 
 app.get('/pokemonbase', (req, res) => {
-    con.query(`SELECT nombre from Pokemon_base order by rand() limit 4 `,
+    con.query(`SELECT * from Pokemon_base order by rand() limit 4 `,
         function (err, results) {
             let mapa = [
-                ["", "", "", "", "", ""],
-                ["", "", "", "", "", ""],
-                ["", "", "", "", "", ""],
-                ["", "", "", "", "", ""],
-                ["", "", "", "", "", ""],
-                ["", "", "", "", "", ""]
+                [null, null, null, null, null, null],
+                [null, null, null, null, null, null],
+                [null, null, null, null, null, null],
+                [null, null, null, null, null, null],
+                [null, null, null, null, null, null],
+                [null, null, null, null, null, null]
             ]
+
             let fila1 = Math.floor(Math.random() * 5);
             let columna1 = Math.floor(Math.random() * 5);
             let fila2 = Math.floor(Math.random() * 5);
@@ -98,12 +99,17 @@ app.get('/pokemonbase', (req, res) => {
             mapa[fila3][columna3]=results[2]["nombre"]
             mapa[fila4][columna4]=results[3]["nombre"]
             console.log(mapa);
-            res.send(results[0]["nombre"]);
+            let data = {
+                "mapa": mapa
+            }
+            res.send(data);
         }
     );
 });
 
-
+function MapaAleatorio(fila,columna) {
+    
+}
 
 
 
