@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+    <!--enlace con el servior-->
+    <title>Login</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script><!--ENLAZAMOS HTML CON JS-->
+    <script src="js/index.js"></script>
+</head>
+
+<body>
+    <form id=login action="/login" method="post">
+        <center>
+            <input type="text" name="name" id="nombre_usuario" placeholder="Usuario">
+            <br><br>
+            <input type="password " name="password" id="pass_usuario" placeholder="Contraseña">
+            <br><br>
+            <input type="submit" value="Logearse">
+        </center>
+    </form>
+</body>
+
+</html>
