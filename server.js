@@ -1,16 +1,18 @@
 
 var express = require('express');
 var bodyParser = require('body-parser');
+
 var usuariosOnline = [
     {
         nick: "Prueba",
         id: 1
     },
-    {
+    {  
         nick: "Prueba2",
         id: 2
     }
 ];
+
 var mysql = require('mysql2');
 
 
@@ -22,25 +24,18 @@ app.use(bodyParser.json());
 app.use(express.static('www'));
 app.use(bodyParser.urlencoded({ extended: false }));
 
-var con = mysql.createConnection({
-    host: "localhost",
-    user: "pokemon",
-    password: "Aula@2019",
-    database: "pokestudio",
-    port: 3306
-
-});
-
-con.connect(function (err) {
-    if (err) throw err;
-    console.log("Connected!");
-});
+const con = mysql.createConnection({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME
+});   
 
 let datos={ "nombre": "Juan" }
 
 
 
-app.post('/datos', (req, res) => {
+app.post('/datos ' , (req, res) => {
     res.send(datos);
 });
 
