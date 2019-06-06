@@ -70,16 +70,11 @@ app.get('/', (req, res) => {
 });
 
 
-let puerto = 4000;
-app.listen(puerto, () => {
-    console.log(`Servidor escuchando en el puerto ${puerto}`);
-});
 
 // login
 app.use('/login2', loginRoutes);
 // Inicio
 app.use('/inicio', inicioRoutes);
-
 app.listen(process.env.PORT, () => {
     console.log(`Servidor escuchando en el puerto ${process.env.PORT}`);
 })
