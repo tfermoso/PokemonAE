@@ -1,3 +1,6 @@
+insert into tipos (id. nombre, fuerte_cotra, debil_contra) values (6, 'Agua', 3, 4);
+
+
 -- 1)
 insert into pokemon_base 
 (nombre, tipo, salud_max, ar1, ar2, ac1, ac2, carga1, carga2) 
