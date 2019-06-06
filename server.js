@@ -83,11 +83,8 @@ let mapa = [
 app.get('/pokemonbase', (req, res) => {
     con.query(`SELECT nombre from Pokemon_base order by rand() limit 1 `,
         function (err, results) {
-            console.log(results);
-            let data = {
-                "result": results
-            }
-            res.send(data);
+            mapa[0][5] = results;
+            console.log(mapa);
         }
     );
 });
