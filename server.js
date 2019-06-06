@@ -70,24 +70,35 @@ app.get('/', (req, res) => {
 });
 
 
-let mapa = [
-    ["", "", "", "", "", ""],
-    ["", "", "", "", "", ""],
-    ["", "", "", "", "", ""],
-    ["", "", "", "", "", ""],
-    ["", "", "", "", "", ""],
-    ["", "", "", "", "", ""]
-]
+
+
 
 
 app.get('/pokemonbase', (req, res) => {
-    con.query(`SELECT nombre from Pokemon_base order by rand() limit 1 `,
+    con.query(`SELECT nombre from Pokemon_base order by rand() limit 4 `,
         function (err, results) {
-            console.log(results);
-            let data = {
-                "result": results
-            }
-            res.send(data);
+            let mapa = [
+                ["", "", "", "", "", ""],
+                ["", "", "", "", "", ""],
+                ["", "", "", "", "", ""],
+                ["", "", "", "", "", ""],
+                ["", "", "", "", "", ""],
+                ["", "", "", "", "", ""]
+            ]
+            let fila1 = Math.floor(Math.random() * 5);
+            let columna1 = Math.floor(Math.random() * 5);
+            let fila2 = Math.floor(Math.random() * 5);
+            let columna2 = Math.floor(Math.random() * 5);
+            let fila3 = Math.floor(Math.random() * 5);
+            let columna3 = Math.floor(Math.random() * 5);
+            let fila4 = Math.floor(Math.random() * 5);
+            let columna4 = Math.floor(Math.random() * 5);
+            mapa[fila1][columna1]=results[0]["nombre"]
+            mapa[fila2][columna2]=results[1]["nombre"]
+            mapa[fila3][columna3]=results[2]["nombre"]
+            mapa[fila4][columna4]=results[3]["nombre"]
+            console.log(mapa);
+            res.send(results[0]["nombre"]);
         }
     );
 });
