@@ -45,26 +45,12 @@ app.post('/cambiardatos', (req, res) => {
     }
 })
 
-app.post('/login', (req, res) => {
-    console.log(req.body)
-    let name = req.body.name;
-    let pass = req.body.password;
 
-    if (name == "Tomas" && pass == "12345") {
-        usuarioOnline.push(name);
-        res.send({
-            "result": "ok",
-            "usuarios": usuarioOnline
-        })
-    } else {
-        res.send({ "result": "usuario o contraseña incorrecto" })
-    }
-})
 
 app.use(express.static('www'));
 
 // login
-app.use('/login2', loginRoutes);
+app.use('/login', loginRoutes);
 // Inicio
 app.use('/inicio', inicioRoutes);
 app.listen(process.env.PORT, () => {
