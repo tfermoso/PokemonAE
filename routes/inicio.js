@@ -3,7 +3,7 @@ const controller = require('../controllers/inicio');
 const router = express.Router();
 
 
-router.get('/', controller.inicio,);
-router.get('/usuarios',controller.usuarios(usuariosOnline));
+router.get('/', controller.inicio);
+router.get('/usuarios',controller.usuarios);
 
 module.exports = router;
