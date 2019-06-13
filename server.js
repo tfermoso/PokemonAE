@@ -37,8 +37,8 @@ var combates = {
             pokemon: {
                 nombre: 'Pikachu',
                 salud: 100,
-                rapido1: 30,
-                rapido2: 50,
+                rapido1: 3,
+                rapido2: 5,
                 cargado1: 80,
                 cargado2: 90,
                 carga1: 3,
@@ -52,9 +52,10 @@ var combates = {
             pokemon: {
                 nombre: 'Charmander',
                 salud: 90,
-                rapido1: 40,
-                rapido2: 70,
-                rapido2: 90,
+                rapido1: 4,
+                rapido2: 7,
+                cargado1: 90,
+                cargado2: 100,
                 carga1: 3,
                 carga2: 5,
                 contador_carga: 0
@@ -110,9 +111,8 @@ app.get('/ataque', (req, res) => {
                     combates[combate][atacante].pokemon.contador_carga++;
                 }
                 if (combates[combate][defensor].pokemon.salud <= 0) {
-                    let temp = combates[combate][atacante].id;
+                    res.send(combates[combate]);
                     delete combates[combate];
-                    res.send("Fin del combate! Ganador jugador " + temp);
                 } else {
                     combates[combate].turno = combates[combate][defensor].id;
                     res.send(combates[combate]);
@@ -128,6 +128,11 @@ app.get('/ataque', (req, res) => {
     }
 
 })
+
+app.get("/datos_combate", (req, res) => {
+    let combate = req.query.codigo_combate;
+    res.send(combates[combate]);
+});
 
 app.use(express.static('www'));
 
